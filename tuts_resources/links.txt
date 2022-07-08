@@ -1,0 +1,6 @@
+https://docs.google.com/presentation/d/e/2PACX-1vTEztADtG8OhJ4695LYwtVftNgriQK7zAOsYNru9OfaPA1mQEAlkNd1BqgOdec1aZRC6PxSxOnlrBeH/pub?start=false&loop=false&delayms=3000&slide=id.gd92b27aadb_0_71
+ - scrimba rest api informaiton
+
+
+https://github.com/its-haanna/its-haanna.github.io/tree/main/Scrimba_Projects
+  - scrimba challenge projects code

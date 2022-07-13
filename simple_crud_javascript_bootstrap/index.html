@@ -23,21 +23,19 @@
 
     <!-- display data -->
     <div class="mt-4">
-      <div id="posts">
-        <div class="d-flex align-items-center">
-          <div class="mr-4">Post 1</div>
-          <span class="options">
-            <button type="button" class="btn btn-outline-primary" onClick="editPost(this)">Edit</button>
-            <button type="button" class="btn btn-outline-danger" onClick="deletePost(this)">Delete</button>
-          </span>
-        </div>
-        <div class="d-flex align-items-center">
-          <div class="mr-4">Post 2</div>
-          <span class="options">
-            <button type="button" class="btn btn-outline-primary" onClick="editPost(this)">Edit</button>
-            <button type="button" class="btn btn-outline-danger" onClick="deletePost(this)">Delete</button>
-          </span>
-        </div>
+      <div>
+
+        <table  class="table table-striped  table-hover">
+          <tbody id="posts">
+          <tr>
+            <td width="60%">Post 1</td>
+            <td width="40%">
+              <button type="button" class="btn btn-outline-primary" onClick="editPost(this)">Edit</button>
+              <button type="button" class="btn btn-outline-danger" onClick="deletePost(this)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>  
 

@@ -22,26 +22,30 @@ let formValidation = () => {
 
 let data = {};
 
+
+
 let acceptData = () => {
   data["text"] = input.value;
-  console.log(data);
+
   createPost();
 };
 
 let createPost = () => {
   posts.innerHTML += `
-  <div class="d-flex align-items-center">
-    <p>${data.text}</p>
-    <span class="options">
+  <tr>
+    <td width="60%">${data.text}</td>
+    <td width="40%">
     <button type="button" class="btn btn-outline-primary" onClick="editPost(this)">Edit</button>
     <button type="button" class="btn btn-outline-danger" onClick="deletePost(this)">Delete</button>
-    </span>
-  </div>
+    </td>
+  </tr>  
   `;
   input.value = "";
+
 };
 
 let deletePost = (e) => {
+
   e.parentElement.parentElement.remove();
 };
 

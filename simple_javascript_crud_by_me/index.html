@@ -23,6 +23,9 @@
     form{
       width: clamp(300px,50%,600px)
     }
+    .alert{
+      display: none;
+    }
     </style>
   </head>
   <body>
@@ -35,6 +38,7 @@
         <div class="col-auto">
           <input type="submit" value="Add" class="btn btn-primary">
         </div>
+        <p class="alert alert-danger"></p>
       </form>
 
       <div id="spoiler" role="aria-hidden" class="col-12 col-md-6 mx-auto">

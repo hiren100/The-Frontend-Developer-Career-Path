@@ -1,15 +1,19 @@
-tbody = document.getElementById('countries');
-saveEdit = document.getElementById('saveEdit');
+const tbody = document.getElementById('countries');
+const saveEdit = document.getElementById('saveEdit');
+const inputEdit = document.getElementById('edit-name');
 
 countries = [];
 
 console.log(countries)
 
 
+
+
+
 function Add(){
   input = document.getElementById('add-name');
   // Get the value
-  var country = input.value;
+  let country = input.value;
 
   if (country) {
     // Add the new value
@@ -18,12 +22,16 @@ function Add(){
     input.value = '';
     // Dislay the new list
     Render();
+    document.querySelector('.alert').style.display = 'none';
+  }else{
+    document.querySelector('.alert').style.display = 'block';
+    document.querySelector('.alert').textContent = 'Please enter text'
   }
 }
 
 
 function Render() {
-  var data = '';
+  let data = '';
 
   if (countries.length > 0) {
     for (i = 0; i < countries.length; i++) {
@@ -37,29 +45,27 @@ function Render() {
       `
     }
   }
-  return tbody.innerHTML = data;
+  tbody.innerHTML = data;
 };
 
 
 function Delete (item) {
   // Delete the current row
-  this.countries.splice(item, 1);
+  countries.splice(item, 1);
   // Display the new list
   Render();
 };
 
 
-const inputEdit = document.getElementById('edit-name');
 function Edit(item){
   // Display value in the field
-  console.log(countries[item])
   inputEdit.value = countries[item];
   // Display fields
   document.getElementById('spoiler').style.display = 'block';
 
   saveEdit.onsubmit = function() {
     // Get value
-    var country = inputEdit.value;
+    let country = inputEdit.value;
   
     if (country) {
       // Edit value

@@ -1,166 +1,114 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.business-container{
-  background: #23252C;
-  width: clamp(400px, 50%, 550px);
-  margin: 0 auto;
-  padding: 1.5rem;
-  border-radius: 10px 10px 0px 0px;
-}
-
-.business-card{
-  width: 317px;
-  margin: 0 auto;
-}
-.business-img{
-  height: 317px;
-}
-.business-card img{
-  max-width: 100%;
-  height: 100%;
-  border-radius: 10px 10px 0px 0px;
-  object-fit: cover;
-}
-.business-content{
-  padding: 20px 35px;
-  background-color: #fff;
-  
-}
-.card-bio{
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.card-name{
+body{
+  margin: 0;
+  padding: 0;
   font-family: 'Inter';
+}
+.header{
+  background-color: #F55A5A;
+  padding: 10px 0 15px;
+  text-align: center;
+  color: white;
   font-style: normal;
+  font-weight: 500;
+  font-size: 14.4608px;
+  line-height: 18px;
+  letter-spacing: -0.075em;
+  color: #FFFFFF;
+}
+.fa-globe{
+  font-size: 24px;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+}
+.card-container{
+  padding: 2rem 0;
+  max-width: 550px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card{
+  display: flex;
+  margin-right: 10px;
+  border-bottom: 1px solid #F5F5F5;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.card:last-child{
+  border: none;
+}
+.card-content{
+  flex-grow: 1;
+}
+.card-top{
+  margin-bottom: 5px;
+}
+.card-content h4{
   font-weight: 700;
   font-size: 25px;
   line-height: 30px;
-  text-align: center;
   color: #2B283A;
-  margin-bottom: 4px;
+  margin: 0 0 10px;
 }
-.card-designation{
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12.8px;
-  line-height: 15px;
-  text-align: center;
-  color: #F47D27;
-   margin-bottom: 6px;
-}
-.card-website{
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10.24px;
-  line-height: 150%;
-  text-align: center;
-  color: #4A4E74;
-  text-decoration: none;
-}
-.card-buttons{
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-.email-btn{
-  background: #FFFFFF;
-  border: 1px solid #D1D5DB;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  color: #374151;    
-  cursor: pointer;
-  padding:10px  30px;
-  margin: 0 8px;
-  min-width: 115px;
-}
-.linkedin-btn{
-  background: #297FE5;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  color: #FFFFFF;
-  padding:10px  30px;
-  margin: 0 8px;
-  min-width: 115px;
-  border-color: transparent;
-  cursor: pointer;
-}
-.card-texts h5{
-  font-family: 'Inter';
-  font-style: normal;
+.card-content h6{
   font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
+  font-size: 10.24px;
+  line-height: 12px;
   color: #2B283A;
-  margin-bottom: 2px;
+  margin: 0 0 5px;
 }
-.card-texts p{
-  font-family: 'Inter';
-  font-style: normal;
+.card-content p{
   font-weight: 400;
   font-size: 10.24px;
   line-height: 150%;
-  color: #4A4E74;
-  margin-bottom: 15px;
+  color: #2B283A;
+  margin: 0;
+}
+.card-location{
+  font-weight: 400;
+  font-size: 10.24px;
+  line-height: 12px;
+  letter-spacing: 0.17em;
+  color: #2B283A;
+  margin-right: 10px;
+}
+.fa-map-marker{
+color: #F55A5A;
+font-size: 12px;
+}
+.card-map-link{
+  font-weight: 400;
+  font-size: 10.24px;
+  line-height: 12px;
+  text-decoration-line: underline;
+  color: #918E9B;
+}
+.card-img{
+  min-width: 125px;
+  margin-right: 20px;
+}
+.card-img img{
+  max-width: 100%;
+  border-radius: 5px;
+  height: 100%;
+  object-fit: cover;
 }
 
-.business-footer{
-  background: #D5D4D8;
-  border-radius: 0px 0px 10px 10px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  font-family: 'Inter';
+
+@media (max-width: 560px) { 
+  .card{
+    flex-direction: column;
+  }
+  .card-img{
+    min-width: 100%;
+    margin-right: 0;
+    height: 150px;
+  }
+  .card-img img{
+    width: 100%;
+    max-height: 100%;
+  }
 }

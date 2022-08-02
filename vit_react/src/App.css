@@ -164,3 +164,25 @@
   text-align: center;
   font-family: 'Inter';
 }
+.dice-wrapper{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns:repeat(5 ,1fr);
+  grid-template-rows: repeat(2 ,1fr);
+  grid-gap: 10px;
+}
+.die-face{
+  background-color: cadetblue;
+  color: white;
+}
+.ul{
+  list-style: none;
+  counter-reset: my-sec-counter;
+}
+.ul li::before{
+  counter-increment: my-sec-counter;
+  content: "List " counter(my-sec-counter);
+}
+ul li:nth-child(4n+1) {  
+  color: rgb(237 77 8);
+}

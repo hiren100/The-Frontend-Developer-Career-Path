@@ -186,3 +186,9 @@
 ul li:nth-child(4n+1) {  
   color: rgb(237 77 8);
 }
+.ul li:nth-child(odd){
+  background-color: #eaeaf2;
+}
+.ul li:nth-child(even){
+  background-color: #f9fcee;
+}

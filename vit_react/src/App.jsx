@@ -2,8 +2,13 @@ import React from 'react';
 import logo from './assets/react.svg';
 import Die from './Die'
 import './App.css';
+import Child from "./Child"
+import {HigherOrder} from "./HigherOrder"
 
 
+const styles = {
+  fontSize : "20px"
+}
 
 function App() {
 
@@ -77,7 +82,7 @@ function App() {
             newDice.push({
               value : Math.ceil(Math.random() * 6),
 
-            })
+            })                                                                                                  
         }
         return newDice
     }
@@ -134,8 +139,8 @@ function App() {
             </button>
             <div className="msg"></div>
         </form>
-
-        <ul className='ul'>
+        <Child>Children Component example</Child>
+        <ul className='ul' style={styles}>
           <li></li>
           <li></li>
           <li></li>
@@ -153,9 +158,11 @@ function App() {
       <div style={{width: "400px", height:"400px", backgroundColor: `hsla(${colorValue1}, ${colorValue2}%, ${colorValue3}%, 1)`}}></div>
       <div className='dice-wrapper'>{diceElements}</div>
       <button onClick={rollDice}>Roll Dice</button>
+      <button onClick={add}>+</button>{count}
+      <button onClick={minus}>_</button>
     </div>
 
   );
 }
-
-export default App;
+const superApp = HigherOrder(App)
+export default superApp;

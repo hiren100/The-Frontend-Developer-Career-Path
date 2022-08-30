@@ -1,168 +1,66 @@
-import React from 'react';
-import logo from './assets/react.svg';
-import Die from './Die'
-import './App.css';
-import Child from "./Child"
-import {HigherOrder} from "./HigherOrder"
-
-
-const styles = {
-  fontSize : "20px"
-}
+import React, {useState, useEffect, useRef} from "react"
 
 function App() {
-
-  let [count,setCount] = React.useState(0)
-
-  function add(){
-    setCount(count + 1)
-  }
-  function minus(){
-    setCount(count - 1)
-  }
-
-  const [formData, setFormData] = React.useState({
-    email: "",
-    password: "",
-    passwordConfirm: "",
-    joinedNewsletter: true
-  })  
-  
-  
-  function handleChange(event) {
-    const {name, value, type, checked} = event.target
-    setFormData(prevFormData => ({
-        ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
-    }))
+    const STARTING_TIME = 5
+    
+    const [text, setText] = useState("")
+    const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME)
+    const [isTimeRunning, setIsTimeRunning] = useState(false)
+    const [wordCount, setWordCount] = useState(0)
+    const textBoxRef = useRef(null)
+    
+    function handleChange(e) {
+        const {value} = e.target
+        setText(value)
     }
-
-
-    function handleSubmit(event) {
-        event.preventDefault()
-
-        if(formData.password === formData.passwordConfirm){
-          document.querySelector('.msg').innerHTML = "Successfully signed up"
-        }else{
-          document.querySelector('.msg').innerHTML = "passwords to not match"
-          return
+    
+    function calculateWordCount(text) {
+        const wordsArr = text.trim().split(" ")
+        return wordsArr.filter(word => word !== "").length
+    }
+    
+    function startGame() {
+        setIsTimeRunning(true)
+        setTimeRemaining(STARTING_TIME)
+        setText("")
+        textBoxRef.current.disabled = false
+        textBoxRef.current.focus()
+    }
+    
+    function endGame() {
+        setIsTimeRunning(false)
+        setWordCount(calculateWordCount(text))
+    }
+    
+    useEffect(() => {
+        if(isTimeRunning && timeRemaining > 0) {
+            setTimeout(() => {
+                setTimeRemaining(time => time - 1)
+            }, 1000)
+        } else if(timeRemaining === 0) {
+            endGame()
         }
-
-        if(formData.joinedNewsletter){
-          console.log('Thanks for signing up for our newsletter!') 
-        }
-    }
-
-    const [windowWidth, setwindowWidth] = React.useState(window.innerWidth)
-    const [windowHeight, setwindowHeight] = React.useState(window.innerHeight)
-    const [colorValue1, setColorValue1] = React.useState(20)
-    const [colorValue2, setColorValue2] = React.useState(20)
-    const [colorValue3, setColorValue3] = React.useState(20)
+    }, [timeRemaining, isTimeRunning])
     
-    React.useEffect(() => {
-        window.addEventListener("resize", function() {
-            setwindowWidth(window.innerWidth)
-            setwindowHeight(window.innerHeight)
-            let randomNo1 = Math.floor(Math.random() * 1000)
-            let randomNo2 = Math.floor(Math.random() * 100)
-            let randomNo3 = Math.floor(Math.random() * 100)
-
-            setColorValue1(randomNo1)
-            setColorValue2(randomNo2)
-            setColorValue3(randomNo3)
-        })
-    }, [])
-
-
-    const [dice, setDice] = React.useState(allNewDice())
-    
-    function allNewDice() {
-        const newDice = []
-        for (let i = 0; i < 10; i++) {
-            newDice.push({
-              value : Math.ceil(Math.random() * 6),
-
-            })                                                                                                  
-        }
-        return newDice
-    }
-    
-    const diceElements = dice.map(die => <Die value={die.value} />)
-    
-    function rollDice(){
-
-      setDice(allNewDice())
-    }
-
-  return (
-    <div className="form-container">
-        <form className="form" onSubmit={handleSubmit}>
-            <input 
-                type="email" 
-                placeholder="Email address"
-                className="form--input"
-                name="email"
+    return (
+        <div>
+            <h1>How fast do you type?</h1>
+            <textarea
+                ref={textBoxRef}
                 onChange={handleChange}
-                value={formData.email}
+                value={text}
+                disabled={!isTimeRunning}
             />
-            <input 
-                type="password" 
-                placeholder="Password"
-                className="form--input"
-                name="password"
-                onChange={handleChange}
-                value={formData.password}
-            />
-            <input 
-                type="password" 
-                placeholder="Confirm password"
-                className="form--input"
-                name="passwordConfirm"
-                onChange={handleChange}
-                value={formData.passwordConfirm}
-            />
-            
-            <div className="form--marketing">
-                <input
-                    id="okayToEmail"
-                    type="checkbox"
-                    name="joinedNewsletter"
-                    onChange={handleChange}
-                    checked={formData.joinedNewsletter}
-                />
-                <label htmlFor="okayToEmail">I want to join the newsletter</label>
-            </div>
+            <h4>Time remaining: {timeRemaining}</h4>
             <button 
-                className="form--submit"
+                onClick={startGame}
+                disabled={isTimeRunning}
             >
-                Sign up
+                Start
             </button>
-            <div className="msg"></div>
-        </form>
-        <Child>Children Component example</Child>
-        <ul className='ul' style={styles}>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-
-      <h1 style={{fontSize: "clamp(1.7rem, 3vw , 2.5rem)"}}>Windows width : {windowWidth}</h1>
-      <h1 style={{fontSize: "clamp(1.7rem, 3vw , 2.5rem)"}}>Windows height : {windowHeight}</h1>
-
-      <div style={{width: "400px", height:"400px", backgroundColor: `hsla(${colorValue1}, ${colorValue2}%, ${colorValue3}%, 1)`}}></div>
-      <div className='dice-wrapper'>{diceElements}</div>
-      <button onClick={rollDice}>Roll Dice</button>
-      <button onClick={add}>+</button>{count}
-      <button onClick={minus}>_</button>
-    </div>
-
-  );
+            <h1>Word count: {wordCount}</h1>
+        </div>
+    )
 }
-const superApp = HigherOrder(App)
-export default superApp;
+
+export default App

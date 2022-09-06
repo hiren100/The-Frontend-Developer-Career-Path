@@ -4,6 +4,10 @@ import Die from './Die'
 import './App.css';
 import Child from "./Child"
 import {HigherOrder} from "./HigherOrder"
+import Image from "./assets/images/large01.jpg"
+import PlaceholderImage from "./assets/images/small01.jpg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 const styles = {
@@ -94,6 +98,19 @@ function App() {
       setDice(allNewDice())
     }
 
+    let html= [1,2]
+    const a = <LazyLoadImage src={Image}
+      width={600} height={400}
+      alt="Image Alt"
+      effect="blur"
+    />
+    const lazyLoadImg = html.map(x => {
+      return <p key={x}>{a}</p>
+    })
+
+
+    
+
   return (
     <div className="form-container">
         <form className="form" onSubmit={handleSubmit}>
@@ -151,6 +168,8 @@ function App() {
           <li></li>
           <li></li>
         </ul>
+        {lazyLoadImg}
+
 
       <h1 style={{fontSize: "clamp(1.7rem, 3vw , 2.5rem)"}}>Windows width : {windowWidth}</h1>
       <h1 style={{fontSize: "clamp(1.7rem, 3vw , 2.5rem)"}}>Windows height : {windowHeight}</h1>

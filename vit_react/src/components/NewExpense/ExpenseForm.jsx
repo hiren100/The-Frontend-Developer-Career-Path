@@ -9,6 +9,7 @@ const ExpenseForm = (props) => {
   const  [amount, setAmount] = useState('')
   const  [date, setDate] = useState('')
 
+
   const handelTitle = (e) =>{
     let data1 = e.target.value
     setTitle(data1)
@@ -28,7 +29,7 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title : title,
-      amount : amount,
+      amount : +amount,
       date: new Date(date)
     }
 
@@ -38,10 +39,14 @@ const ExpenseForm = (props) => {
     setAmount("")
     setDate("")
 
+    props.onHide(false)
+
   }
 
+
+
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={`${props.class ? 'visible' : 'disable'}`}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
@@ -57,6 +62,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button type='button' onClick={props.onHide}>Cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>

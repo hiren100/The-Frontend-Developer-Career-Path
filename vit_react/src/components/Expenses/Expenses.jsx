@@ -2,6 +2,7 @@ import React from 'react';
 
 import ExpenseItem from './ExpenseItem';
 import ExpensesFilter from './ExpenseFilter';
+import ExpensesChart from './ExpensesChart';
 import Card from '../UI/Card';
 import './Expenses.css';
 import { useState } from 'react';
@@ -16,32 +17,33 @@ const getSelectData = (selecetedyear) =>{
 
 
 
+  const filterExpenses = props.items.filter(x => {
+    return x.date.getFullYear().toString() === selectYear;
+  })
+
+
+  let expensedata = <p style={{color: 'white'}}>No data Found</p>
+
+  if(filterExpenses.length>0 ){
+    expensedata = filterExpenses.map(x => {
+      return  <ExpenseItem key={x.id}
+            title={x.title}
+            amount={x.amount}
+            date={x.date}
+        />
+      }) 
+  }
+
   return (
     <Card className="expenses">
       <div>
         <ExpensesFilter onSelecetData={getSelectData} defaultYear={selectYear}/>
       </div>
+      
       <p style={{color: 'white'}}>{selectYear}</p>
-      <ExpenseItem
-        title={props.items[0].title}
-        amount={props.items[0].amount}
-        date={props.items[0].date}
-      />
-      <ExpenseItem
-        title={props.items[1].title}
-        amount={props.items[1].amount}
-        date={props.items[1].date}
-      />
-      <ExpenseItem
-        title={props.items[2].title}
-        amount={props.items[2].amount}
-        date={props.items[2].date}
-      />
-      <ExpenseItem
-        title={props.items[3].title}
-        amount={props.items[3].amount}
-        date={props.items[3].date}
-      />
+      <ExpensesChart expenses={filterExpenses}/>
+      {expensedata}
+     
     </Card>
   );
 }
